@@ -1,0 +1,12 @@
+diff --git a/src/util.c b/src/util.c
+index e8e2ad4..53de2b5 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -31,6 +31,7 @@
+ #include <getdate.h>
+ #include "ignore-value.h"
+ #include "error.h"
++#include "pathmax.h"
+ 
+ #include <signal.h>
+ #if !defined SIGCHLD && defined SIGCLD

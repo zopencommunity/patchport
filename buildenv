@@ -1,0 +1,27 @@
+export ZOPEN_TYPE="TARBALL"
+export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/patch/patch-2.7.tar.gz"
+export ZOPEN_TARBALL_DEPS="curl make gzip coreutils"
+export ZOPEN_GIT_DEPS="curl make git coreutils"
+export ZOPEN_BOOTSTRAP=skip
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to guage build health
+
+  totalTests=$(grep '# TOTAL: ' ${chk} | awk ' { print $3; }')
+  actualFailures=$(grep '# FAIL: ' ${chk} | awk ' { print $3; }')
+  expectedFailures=17
+
+  echo "actualFailures:${actualFailures}"
+  echo "expectedFailures:${expectedFailures}"
+  echo "totalTests:${totalTests}"
+}
+
+zopen_append_to_env()
+{
+  # echo envars outside of PATH, MANPATH, LIBPATH
+}
