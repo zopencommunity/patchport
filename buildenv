@@ -6,6 +6,13 @@ export ZOPEN_BOOTSTRAP=skip
 
 zopen_check_results()
 {
+# TOTAL: 34
+# PASS:  12
+# SKIP:  4
+# XFAIL: 1
+# FAIL:  17
+# XPASS: 0
+# ERROR: 0
   dir="$1"
   pfx="$2"
   chk="$1/$2_check.log"
