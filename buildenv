@@ -1,16 +1,16 @@
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/patch/patch-2.7.tar.gz"
-export ZOPEN_TARBALL_DEPS="curl make gzip coreutils"
-export ZOPEN_GIT_DEPS="curl make git coreutils"
+export ZOPEN_TARBALL_DEPS="curl make gzip coreutils zoslib"
+export ZOPEN_GIT_DEPS="curl make git coreutils zoslib"
 export ZOPEN_BOOTSTRAP=skip
 
 zopen_check_results()
 {
 # TOTAL: 34
-# PASS:  12
+# PASS:  26
 # SKIP:  4
 # XFAIL: 1
-# FAIL:  17
+# FAIL:  3
 # XPASS: 0
 # ERROR: 0
   dir="$1"
@@ -21,7 +21,7 @@ zopen_check_results()
 
   totalTests=$(grep '# TOTAL: ' ${chk} | awk ' { print $3; }')
   actualFailures=$(grep '# FAIL: ' ${chk} | awk ' { print $3; }')
-  expectedFailures=17
+  expectedFailures=3
 
   echo "actualFailures:${actualFailures}"
   echo "expectedFailures:${expectedFailures}"
