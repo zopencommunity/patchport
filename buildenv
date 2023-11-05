@@ -1,7 +1,10 @@
-export ZOPEN_TYPE="TARBALL"
-export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/patch/patch-2.7.tar.gz"
-export ZOPEN_TARBALL_DEPS="curl make gzip coreutils zoslib"
-export ZOPEN_GIT_DEPS="curl make git coreutils zoslib"
+# bump: patch-version /PATCH_VERSION="(.*)"/ https://ftp.gnu.org/gnu/patch/|re:/href="patch-([\d.]+).tar.gz"/$1/|semver:*
+PATCH_VERSION="2.7"
+
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/patch/patch-${PATCH_VERSION}.tar.gz"
+export ZOPEN_STABLE_DEPS="curl make gzip coreutils zoslib"
+export ZOPEN_DEV_DEPS="curl make git coreutils zoslib"
 export ZOPEN_BOOTSTRAP=skip
 
 zopen_check_results()
@@ -32,3 +35,9 @@ zopen_append_to_env()
 {
   # echo envars outside of PATH, MANPATH, LIBPATH
 }
+
+zopen_get_version()
+{
+  echo "$PATCH_VERSION"
+}
+
