@@ -1,12 +1,15 @@
-diff --git a/src/util.c b/src/util.c
-index e8e2ad4..53de2b5 100644
---- a/src/util.c
-+++ b/src/util.c
-@@ -31,6 +31,7 @@
- #include <getdate.h>
- #include "ignore-value.h"
- #include "error.h"
-+#include "pathmax.h"
- 
- #include <signal.h>
- #if !defined SIGCHLD && defined SIGCLD
+diff --git i/src/util.c w/src/util.c
+index d0facb4..6a894cc 100644
+--- i/src/util.c
++++ w/src/util.c
+@@ -298,6 +298,10 @@ set_file_attributes (char *to, int tofd, enum file_attributes attr,
+ 		     char const *from, int fromfd, const struct stat *st,
+ 		     mode_t mode, struct timespec *new_time)
+ {
++#ifdef __MVS__
++  // preserve file attributes
++  __chgpathccsid(to,  st->st_tag.ft_ccsid); 
++#endif
+   if (attr & FA_TIMES)
+     {
+       struct timespec times[2];
