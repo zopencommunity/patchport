@@ -1,8 +1,19 @@
-diff --git i/src/util.c w/src/util.c
-index d0facb4..6a894cc 100644
---- i/src/util.c
-+++ w/src/util.c
-@@ -298,6 +298,10 @@ set_file_attributes (char *to, int tofd, enum file_attributes attr,
+diff --git a/src/util.c b/src/util.c
+index d0facb4..b3bd240 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -44,6 +44,10 @@
+ #include <pch.h>
+ #include <safe.h>
+ 
++#ifdef __MVS__
++#include <zos.h>
++#endif
++
+ enum backup_type backup_type;
+ 
+ static void makedirs (char const *);
+@@ -298,6 +302,10 @@ set_file_attributes (char *to, int tofd, enum file_attributes attr,
  		     char const *from, int fromfd, const struct stat *st,
  		     mode_t mode, struct timespec *new_time)
  {
